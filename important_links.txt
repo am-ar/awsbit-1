@@ -1,3 +1,6 @@
 https://www.webpagetest.org/
 
+AWS
+https://infrastructure.aws/
+
 https://www.youtube.com/watch?v=T-eghY-9WdE --> DNS
