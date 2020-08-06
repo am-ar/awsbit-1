@@ -1,0 +1,21 @@
+Create EFS & in network add the SG name(sample SGEFS) in selected AZ..
+
+
+Create 2 linux server with a SG name (sample SGEFS) NFS port open(2049)
+
+sudo yum install -y amazon-efs-utils
+at root mkdir efs
+
+
+
+sudo mount -t efs -o tls fs-baf21a38:/ efs
+
+df -h --> to check list of mount files.
+
+cd to efs folder
+cd efs
+Create 100 files with touch command
+
+touch kumartraining{1..100}
+
+check in other servers....
