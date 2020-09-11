@@ -19,3 +19,39 @@ Create 100 files with touch command
 touch kumartraining{1..100}
 
 check in other servers....
+
+============================================================================================================
+
+How to run user-data everytime in Windows.
+Refer : 
+https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html
+
+=============================================================================================================
+
+how to run user-data everytime after reboot in linux :
+Content-Type: multipart/mixed; boundary="//"
+MIME-Version: 1.0
+
+--//
+Content-Type: text/cloud-config; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="cloud-config.txt"
+
+#cloud-config
+cloud_final_modules:
+- [scripts-user, always]
+
+--//
+Content-Type: text/x-shellscript; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="userdata.txt"
+
+#!/bin/bash
+/bin/echo "Hello kumar" >> /tmp/testfile.txt
+--//
+
+Refer : 
+https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/
+
