@@ -102,3 +102,155 @@ Preferred qualifications 
 - Experience as a crisis manager leading response to service outages 
 - Knowledge of Microsoft Azure, AWS or similar cloud computing platforms 
 - Leadership skills and experience. 
+
+
+--------------------------------------Adding More---------------------------------
+
+1. What is faster to access  CPU registers or memory?
+Multiple choice CPU register or Memory
+ 
+2. Is int (integer data type) in C language 16 bit or 32 bit or 64 bit?
+Options 16 bit or 32 bit or 64 bit or Depends on complier
+ 
+3. What is max value as 2 raise to the power of for a signed integer data type in C Language on a 32bit compiler? Specify the power of 2 value for it?
+Options 16 or 15 or 31 or 32 
+ 
+4. Big O Notation 
+ 
+Coding questions
+ 
+5. Delete Nodes Greater than X 
+ 
+6. IsPrime – details as below
+ 
+	  Write a function to determine if input is prime or not. A prime number is greater than 1 and that is divisible only by itself and 1 (e.g. 2, 3, 5, 7, 11).
+	  
+	 
+	  /*
+	   * Complete the function below.
+	   */
+	boolean isPrime ( int n ) {
+	 
+	}
+ 
+7. Unique Sums question 
+ 
+
+-------------------------------------------------Adding More -------------------
+
+
+This question can be used with a wide range of candidate levels (IMO 59-65), to assess proficiency in object oriented design (and coding). 
+ 
+The Singleton Design Pattern 
+Please spend no more than 20 minutes on this exercise, advancing as far as the candidate can confidently go. 
+Note: This guide expects the simplest answer for any given question, and then progressively adds complexity. If the candidate provides more complete answers, you should skip asking questions already answered but still go through the ‘discussion’ part to be convinced the candidate understands the issues and their respective solutions.  
+ 
+Important: Steer clear from language specific syntax, techniques (or tricks) - the purpose of this question is to dive deep into Computer Science Fundamentals (such as memory usage and optimizations, performance and efficiency considerations, and multi-threaded programming). If the candidate uses language-specific specially designed constructs (it's great that they know about it, but) ask them to explain how is the construct implemented, and if needed ask them to implement their solution without it. 
+ 
+1. Are you familiar with the Singleton Design Pattern? 
+If the candidate answers ‘no’, read aloud answer to (2) and continue to (3). If the candidate answers ‘yes’ follow-up with (2) 
+2. What is the pattern’s intent? Could you give a real-world example that captures the motivation for implementing the pattern?  
+From the GoF: “Intent: Ensure a class only has one instance, and provide a global point of access to it. Motivation: Although there can be many printers in a system, there should be only one printer spooler.” 
+3. Please implement the pattern (using Java, C#, or C++) 
+Minimal expected code (questions below should be skipped if the candidate provides a more complete implementation: 
+public class Singleton { 
+private static Singleton instance = null; 
+  
+protected Singleton() { 
+// Exists only to defeat instantiation 
+} 
+  
+public static Singleton getInstance() { 
+if (instance == null) { 
+instance = new Singleton(); 
+} 
+return instance; 
+} 
+} 
+Discussion:  
+· The private member of the class instance is declared as ‘static’ – what is the ‘static’ keyword used for? as ‘static’ is used for memory management, discuss the differences between the heap and stack sections of the memory. 
+· The sample code employs a technique known as ‘lazy instantiation’ to create the singleton; as a result, the singleton instance is not created until thegetInstance()method is called for the first time. This technique ensures that singleton instances are created only when needed. Compare this technique with early loading – pros and cons. 
+· The constructor is declared ‘protected’ – what is the ‘protected’ keyword used for? discuss the differences between ‘private’, ‘protected’, and ‘public’ methods and constructor specifically. Can this class still be instantiated more than once? YES! How? A subclass has access to the constructor, and also a class declared in the same package; different classloaders will have their own instance; and finally the class can be serialized and deserialized multiple times. Discuss approaches to avoid these issues (e.g. to avoid the class being instantiated by subclasses and same-package class, declare the constructor as ‘private’ and the class as ‘final’ or move the class to a separate explicit package). 
+4. Will this implementation of a Singleton still perform as expected in a multi-threaded process? If needed, “run” multiple threads through the code and show how multiple threads can enter the getInstance() method, perform the condition instruction (instance will be null) before yielding to another thread. 
+5. Please implement an MT-safe version of the Singleton pattern 
+Note: code in red was added to address the issue. 
+public class Singleton { 
+private volatile Singleton instance = null; 
+  
+protected Singleton() { 
+// Exists only to defeat instantiation 
+} 
+  
+public static Singleton getInstance() { 
+if (instance == null) { 
+synchronized(this) { 
+if (instance == null) { 
+instance = new Singleton(); 
+} 
+} 
+} 
+return instance; 
+} 
+} 
+Discussion: this added code is a software idiom called Double-Checked Locking (DCL) – if the candidate arrived at this solution independently, explore their understanding of the idiom; cover both the merits of minimal locking (in case candidates synchronize the entire method, or anything more than only the instantiation instruction) and the benefits of the idiom (performance). 
+6. Assuming you cannot rely on the construction of objects to be serialized and thread safe, will DCL still work? 
+Discussion:  
+· DCL will not work reliably in a platform independent way when implemented in Java, and it would only work when implemented in C++ when explicit memory barriers are used (note that it works well in .net). There are multiple reasons why it’s broken the primary being the ordering of the creation of the class (making the condition in our code fail as the instance will no longer be null) and the initialization of the instance’s fields – a thread accessing our Singleton may access uninitialized objects. Here’s the fix: 
+public class Singleton { 
+protected Singleton() { 
+// Exists only to defeat instantiation 
+} 
+ 
+private static class SingletonHolder { 
+private static final Singleton instance = new Singleton(); 
+} 
+ 
+public static Singleton getInstance() { 
+return SingletonHolder.instance; 
+} 
+} 
+This is ensured to work based on the Java Language Specifications, as the SingletonHolder internal class is not initialized until the JVM determines that the class must be executed, that only happens during run-time when the static getInstance() method is invoked for the first time. 
+· Further explore constructor mechanics (allocating memory, initializing fields). 
+ 
+See informative discussion here. 
+
+From <https://ppc-onenote.officeapps.live.com/o/onenoteframe.aspx?ui=en%2DUS&rs=en%2DUS&WOPISrc=https%3A%2F%2Fmicrosoft%2Esharepoint%2Ecom%2Fteams%2FSREandLiveSite%2FSRE%2520%2526%2520LiveSiteexternal%2FSRELiveSite%2F%5Fvti%5Fbin%2Fwopi%2Eashx%2Ffiles%2F30d5f2d4ceb545ec9b576ff6b10b7e6d&wdEnableRoaming=1&wdFR=1&mscc=1&hid=ca227e9e-301e-0000-9b61-f065546fe745> 
+
+Implement Find Odd 
+Scoping 
+Appropriate SDE to Principal. At higher levels the base question may seem trivial, but moving quickly to deeper challenges can make it worthwhile. 
+Introduction 
+“We have an array of integers. The integers occur an even number of times. One integer occurs an odd number of times. Find the integer that occurs an odd number of times.” These sentences are hard to say clearly. There is generally some confusion about odd and even numbers versus occurrences. Generally, candidates will clarify, but make sure that the candidate understands what you are asking. 
+Clarification 
+The candidates might ask any of the following questions: 
+7. How large is the array? Short answer: “Arbitrarily large.” Some candidates will try to assume a small size or negotiate for a manageable size. Some candidates will miss this concern entirely.  
+8. Is the array sorted? Short answer: “You don’t know.” This clarification is not required to answer the question, but shows the candidate is mentally exploring options. 
+9. What is the range of integers that occur? Short answer: “0 to maxlong” (or similar for whatever language they are working in.) This clarification is not required to answer the question, but shows the candidate is mentally exploring options. 
+10. What about input validation? What if the array doesn’t meet the conditions described? Short answer: “Good question. We should probably consider that we could receive an array that doesn’t meet our conditions. No odd occurrences or more than one.” Candidates rarely ask this up front, but many candidates design a solution that handles this problem. 
+Some candidates will jump in and find some of these issues quickly once they get started. Most good candidates will ask at least a few clarifying questions. In some cases, good candidates will just assume most of these answers without asking. Ideally the candidate will state at least some of these assumptions explicitly. 
+Initial Solutions 
+There are a few acceptable and many not good solutions to this problem. Most candidates who don’t quickly see a good solution may have trouble getting to any working solution. 
+Standard Solutions: 
+11. Linear traversal to construct a map of the integers and occurrences. The candidate makes a single pass through the array and builds a map. The candidate traverses the map elements to find the odd element. N == number of elements in the array. M == the domain of integers in the array. The complexity of this solution is O(N+M). The memory complexity is O(M).  
+12. Linear traversal to construct a set. The candidate makes a single pass through the array and builds a set. In this solution, instead of storing a sum of occurrences, the candidate adds an element to the set if not present and removes if not present. After the linear pass through the array, the map will only contain one element. Time complexity is O(N). Memory complexity is technically O(M), but is Q(M/2) and in the case of sorted data is W(1). 
+13. XOR. There is a bit of silly trick to answer this question. Passing through the array linearly will yield a single value. If the input data is valid, the number at the end will be the correct answer. The time complexity of this solution is O(N) and requires almost no additional memory, but there is no way to detect whether the input array is valid. If the input array is invalid, the solution will produce some other mostly unrelated number. If the input array contains no odd occurring numbers the result is 0, but is indistinguishable from 0 occurring an odd number of times.  
+Other Solutions: 
+• Map building as above but using an array as a map. It is possible to use an array as a map because the keys are integers. While this is fine for a small range of number, but increases both time and memory complexity to O(maxlong). 
+• Sorting. Sorting is an expensive way to solve this problem, but a cleanly implemented solution on top of sorting may be acceptable. If the candidate writes a clean linear pass after the sort  the candidate can show her ability to write clean code and it is possible to have a good discussion about big O and other challenges related to input validation. 
+Challenges 
+Input Validation 
+There are ways that the candidate may rely on the frame of the question to avoid good software practice. The candidate’s solution might not work at all if the input is invalid. Depending on time, an interviewer may consider exploring an entirely new solution with the candidate. If there is not time, talking through alternatives may work. If the candidate’s solution is only missing validation, a good approach is to present her the challenge that the input data could be wrong and ask her to adapt her code to deal with invalid inputs. If the candidate used solution 1 or 2 above, the candidate might have assumed that there would only be one odd occurrence and not checked for 0 or 2 or more occurrences. 
+Generalization 
+If the candidate did well, the interviewer can consider generalization of the function. To start, ask the candidate to answer Find Even. After this change, ask the candidate to consider how to create a library for similar operations: max, min, average, percentile. Coding these diverse function is likely not practical in a small amount of time, but we would like to see a candidate make some attempt to break down the problem and talk about what is common. Some constructive activities the candidate could engage in are: 
+• Listing the set of APIs we are considering. 
+• Considering the needs of the user of the library. 
+• Breaking out parts of her existing code into functions to identify reuse. 
+• Considering what kinds of data structures and algorithms are suitable for answering the different operations to identify the most general solution. 
+• Considering the use case where a user runs multiple of the operations on the same input data. 
+ 
+From <https://microsoft-my.sharepoint.com/personal/matthba_microsoft_com/Documents/Interview%20Question%20Find%20Odd.docx>  
+
+From <https://ppc-onenote.officeapps.live.com/o/onenoteframe.aspx?ui=en%2DUS&rs=en%2DUS&WOPISrc=https%3A%2F%2Fmicrosoft%2Esharepoint%2Ecom%2Fteams%2FSREandLiveSite%2FSRE%2520%2526%2520LiveSiteexternal%2FSRELiveSite%2F%5Fvti%5Fbin%2Fwopi%2Eashx%2Ffiles%2F30d5f2d4ceb545ec9b576ff6b10b7e6d&wdEnableRoaming=1&wdFR=1&mscc=1&hid=ca227e9e-301e-0000-9b61-f065546fe745> 
+
+
+
