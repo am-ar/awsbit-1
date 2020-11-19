@@ -1,0 +1,104 @@
+Tips 
+• Sell Azure & SRE first - look at the blurb under FNF script page
+
+• Focus on asking questions that don’t show our knowledge but enable the candidate to show their knowledge. So try to avoid questions that have like an secret magic logic such as xor of bits.  
+	• So if you ask coding question say isPrime or Binary tree traversal, for most part briefly share the logic and context that enables candidate to do problem solving. Then see how the candidate codes with that logic as modular, clean, optimized, scalable, edge case, exception handling, logging, unit test cases and so on 
+ 
+• Start with what the candidate has done from his/her resume - the recent project they are working on or project they are most proud of.  
+	• Ask them to describe the goals of the project (customer focus), then architecture, then their specific role, the specific code they contributed, (peeling the onion strategy where progressively we focus on their role, contribution, you vs team, decisions, how you did it. Results - how did you measure success, why those measures, lessons learned, how would you do it differently. If candidate says they used a hash function, ask which hash function why that hash function (shows depth, hands-on, indicates if they really did that work) 
+ 
+• Have a variety of question bank to adapt to candidates strengths 
+	• So if a candidate is expert in UX then focus on UX questions such as percentage pixel, internationalization, accessibility 
+ 
+• Pick questions that represent the problems we are working on in our team 
+	• So we pick question on how would one go about creating an incident response assistant – various components and so on 
+	• How would you create an experience to enable users to find the right engineering team to contact for an issue 
+	
+• SREs are distinguished from other SWEs being expert in 'production related technologies'
+	• In all interviews we keep this in focus to understand candidates skills and passion for production & reliability
+	• Ask candidates question related to how they managed and operated services they build
+	• During coding questions push on how the solution will scale say for 1000 tps or large amount of data or to reduce latency
+	• Ask product related questions such as what monitoring, alert did you set or what monitoring or alert will you set say on a website or on Azure or Twitter
+	• See in below for more questions
+ 
+First round 
+ 
+Competency to assess - 4+ years of professional software engineering experience for SDE II 
+Example questions 
+• Explain the recent project or project you most proud of - Ask them to describe the goals of the project (customer focus), then architecture, then their specific role, the specific code they contributed, (peeling the onion strategy where progressively we focus on their action - role, contribution, you vs team, decisions, how you did it. Results - measure success, results, why this measure, lessons learned, how would u do it differently). If candidate says they used a hash function, ask which hash function why that hash function (shows depth, hands-on, indicates if they really did that work) 
+ 
+Competency to assess - Solid coding skills in C/C++ or C#/Java 
+Example questions as below focus on data structures, code modularity, completeness, exception handling, overflow underflow, edge case, reuse, unit test cases, logging, monitoring, speed of thinking/coding, quality code that takes performance, maintainability into consideration, scale, reliability, durablity. Test coverage. Identify & prevent bugs. What monitoring, alert, security aspects  
+• Find Kth smallest or largest element in an array 
+• Print tree in level order traversal 
+• Reverse string , then may be reverse words in a sentence 
+• Given two sorted linked lists, write code to merge them 
+• Search an element in sorted and rotated array 
+• Find repeat values in an array 
+	• Write unit test cases, exception handling, edge cases, modularity / reuse of parts 
+• Reverse a string 
+• Find if string is palindrome 
+• Sort an array according to absolute difference with given value. 
+• Given a linked list and two integers M and N. Traverse the linked list such that you retain M nodes then delete next N nodes, continue the same till end of the linked list. 
+• Given a string s we need to tell minimum characters to be appended (insertion at end) to make a string palindrome. 
+• WAP Check if the given tree is Binary search tree 
+• WAP to find out least element in sorted rotated array . 
+• Check if any anagram of a string is palindrome or not? 
+• Find the source of Itinerary from a given list of tickets 
+• Print binary tree in a zig-zag fashion like the first level from left to right, second from right to left and so on.  
+• Given a list of numbers just reverse the odd numbers. 
+• Given a sorted array A[] and a number x, check for a pair in A[] with the sum as x. 
+ 
+Second round 
+ 
+Competency to assess -  Excellent technical design and Distributed systems (OO, caching, sharding, microservices, multi-region - reuse (modularization), design that solves for customer / business / operational needs, integration, reliability (Scale, perf), design patterns (message driven, REST)), Security, Monitoring, Alerting, TSG 
+ 
+	• Design a multiplayer game like snakes and ladders 
+		○ First come up with objects 
+		○ Then comeup with algorithm 
+		○ How to support different devices 
+		○ How to support it offline 
+	• Design a file sharing platform like dropbox 
+	• Design a system like bookmyshow for booking movie tickets 
+	• Design a system like irctc for booking railway tickets 
+	• Design a system for scheduling meetings 
+	• Design a system to manage elevators – start with OO and then progress to outline logic for the controller and then progress to write pseudo/working code for the controller algorithm 
+		○ High order thinking – how can it be extended to manage elevators across multiple buildings? How can it optimized to reduce wait time or consume less energy? 
+	• Design a restaurant scheduling system – start with OO and then progress to outline logic for the core scheduler and then progress to write pseudo/working code for the scheduler algorithm 
+		○ High order thinking – how can it be extended to manage across restaurants? Enable special selections such as an event, birthday, window facing, booth? 
+	• Architecture of a basic web application that is used to manage employee data in a company 
+		○ High order thinking – spans across companies, across  regions, employee movement across regions, read latency vs write latency, replication, monitoring, reliability 
+	• Design a TSG automation system 
+	• How would you implement a spell corrector? example: Minimum => Minimum  Hint: Breath-first search 
+	• How would you calculate any mathematical expression? example => 5+8*3 = 29 Hint: Infix to postfix 
+	• How would you implement auto-complete feature? Hint: Trie 
+	• There is a website with many users. A user is said to be online if he clicks a button on the website. Suggest me a good algorithm for the function to find the recent ten online user list. Hint: LRU cache 
+	• Design something similar to Quora (social Network+ message broad service) 
+	• Design Dropbox or google drive (global file storage and sharing service) 
+	• Design Facebook messenger  
+	• Design Whats app feature that tells if the message is received/read/unread by recipient 
+ 
+Third round 
+ 
+Competency to assess - Team and Microsoft culture fit (customer focused, growth mindset, team player or collaborator, data focus, Livesite bent) 
+• Tell me example when u used customer feedback to drive improvement or example when you delighted or wowed the customer 
+• Tell me about an error in judgment or design/code or your biggest failure 
+• Tell me example when you ran into significant obstacles to achieve a goal 
+• Give an example you worked with someone who wasn’t cooperative as you needed and what you did 
+ 
+Competency to assess - Passion for software reliability and operability 
+     Example questions 
+• What kind of monitoring and alerting will you setup on webapp or have setup on a project that you worked? 
+• What were some common causes of failures in the system you built & maintained? 
+• Tell me about an oncall experience where you had to troubleshoot & mitigate a production issue? 
+• How would you make it easier to do? 
+• Customers are complaining that your website is slow. How will you troubleshoot? 
+• Are you OK with 30% time being oncall? [ideal response is that candidate is curious on what kind of production issues, the process & training for oncall. If response is need to check with my family then probably not right fit]
+• How would you respond as a call leader on an issue of say your website is down or Twitter is down or users complaining Azure VMs not starting up?            
+ 
+ 
+Preferred qualifications 
+- Expertise in debugging and remediating issues in large-scale distributed systems 
+- Experience as a crisis manager leading response to service outages 
+- Knowledge of Microsoft Azure, AWS or similar cloud computing platforms 
+- Leadership skills and experience. 
