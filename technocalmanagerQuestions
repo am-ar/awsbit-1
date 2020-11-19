@@ -1,0 +1,111 @@
+Round 1 - Technical leadership (Deliver results), technical experience, distributed systems concepts
+
+	○ Understand the scope and size of technical teams managed. Ask to explain what owned, accountable for, the results - KPIs, describe architecture of the system owned, challenges, technologies used, engineering methods/practices/lifecycle. 
+	○ How do you help improve productivity of team without impacting quality?
+	○ What has been your greatest impact on the business?
+	○ Asked about strengths, weakness and what candidate views as value-add as mgr or leader?
+	○ Give me an example of a situation when you had to complete a task or project with fewer resources than you needed. How were you able to complete task/project with so few resources? (What led you to believe that you couldn’t simply ask for more money, time or people? How would things have gone better if you had more resources?)
+	○ How do you tell if what you built is to spec? 
+	○ how to make sure everyone on the same page wrt requirements?
+	○ Give me an example of managing a complex set of dependencies.
+	○ What are the top 3 risks in your projects and how do you manage?
+	○ Tell me about a time when your team was asked to deliver more work in a time period than resourcing allowed.
+	○ How did you determine that it was more work than was possible, and how did you handle this situation?
+	○ Tell me about a time when an external dependency could not fit you in their schedule - what do you do? 
+	○ Do you do code reviews? Share example of code review feedback you gave recently, what do you look in code reviews
+	○ Walk me through a low level design of your system and what choices or design decisions you help make?
+	○ Give me an example where there were different tech design or coding options choice among team and how you enabled the decision or choice ? 
+	○ Give an example where you had to decide or balance between designing for future extensibility but also not delaying present release?
+	
+
+Non-Abstract Large scale system design - https://www.educative.io/collection/page/5668639101419520/5649050225344512/5673385510043648
+	○ Design PaaS multi tenant system for employee info mgmt?
+	○ Design inventory mgmt for Amazon?
+	○ Architecture of a basic web application that is used to manage employee data in a company 
+		○ High order thinking – spans across companies, across  regions, employee movement across regions, read latency vs write latency, replication, monitoring, reliability 
+	○ Design drop box
+	○ Design bookmyshow
+
+Round 2 -  Technical Design, sound coding/design/tech skills, technical design decision making  - Experience and competency to guide team to create right design, make right design choices, ask good technical questions, participate in design discussions (what should be captured in design spec), team engineering practices
+
+More low level design, problem solving questions here
+	○ Design a multiplayer game like snakes and ladders 
+		○ First come up with objects 
+		○ Then come-up with algorithm 
+		○ How to support different devices 
+		○ How to support it offline 
+	○ Design a system to manage elevators – start with OO and then progress to outline logic for the controller and then progress to write pseudo/working code for the controller algorithm 
+		○ High order thinking – how can it be extended to manage elevators across multiple buildings? How can it optimized to reduce wait time or consume less energy? 
+	○ Design a restaurant scheduling system – start with OO and then progress to outline logic for the core scheduler and then progress to write pseudo/working code for the scheduler algorithm 
+		○ High order thinking – how can it be extended to manage across restaurants? Enable special selections such as an event, birthday, window facing, booth? 
+	○ Design a TSG automation system 
+	○ How would you implement a spell corrector? example: Minimum => Minimum  Hint: Breath-first search 
+	○ How would you calculate any mathematical expression? example => 5+8*3 = 29 Hint: Infix to postfix 
+	○ How would you implement auto-complete feature? Hint: Trie 
+	○ There is a website with many users. A user is said to be online if he clicks a button on the website. Suggest me a good algorithm for the function to find the recent ten online user list. Hint: LRU cache 
+	○ Design Whats app feature that tells if the message is received/read/unread by recipient 
+
+Round 3 -  Passion for software reliability, operability, LiveSite, automation and production 
+
+	○ What kind of monitoring and alerting will you setup on webapp or have setup on a project that you worked? 
+	○ What were some common causes of failures in the system you built & maintained? 
+	○ Tell me about an oncall experience where you had to troubleshoot & mitigate a production issue? 
+	○ How would you make it easier to do? 
+	○ Customers are complaining that your website is slow. How will you troubleshoot? 
+	○ Are you OK with 30% time being oncall? [ideal response is that candidate is curious on what kind of production issues, the process & training for oncall. If response is need to check with my family then probably not right fit]
+	○ How would you respond as a call leader on an issue of say your website is down or Twitter is down or users complaining Azure VMs not starting up?            
+	○ How to balance the needs of a growing business with the requirement to maintain their existing systems ? Balance Dev vs Ops Engineering
+	○ High sev event, ambiguity, what you do ? Give example of hard down, brown out, black out, tricky issue
+	○ [example of a tough technical decision you had to make, where you had to get other people on board] 
+	○ Technical challenge and how did you overcome to deliver a project ?
+		i. Taking ownership of the problem and responsibility for fixing it
+		ii. Working with all the impacted teams to come to a resolution
+		iii. Working through TPM tripod of options
+		iv. Know what the outcome is. 
+	
+ Round 4 - People leadership, influence for impact, culture fit, strategy, roadmap, vision
+
+	○  Example of a bad hire that you made? Why was he/she a bad hire? How did you resolve the situation?
+	○  Tell me a particular thing you have done for your direct report to help him/her grow in their career. 
+	○ Top challenges in managing and leading team
+		○ Describe a time when you significantly contributed to improving morale and productivity on your team.  What were the underlying problems and their causes?  How did you prevent them from negatively impacting the team in the future? 
+	○ Give me an example of a time you have provided feedback to develop and leverage the strengths of someone on your team.  Were you able to positively impact that person’s performance?  What were your most effective methods?   
+	
+	○ Tell me about goals that you set for your department/area. (How will you know if these goals are achieved? Do you feel they are ambitious or conservative and why? What’s your process for planning the quarter or the yearly goals?)
+	○ Describe the most significant/impactful continuous improvement project that you have led?  (What was the catalyst to this change and how did you go about it?)
+	○ How do you empower your team to ensure they drive customer solutions in alignment with your company’s goals?
+	○ Give me an example of something you have done to ensure your team accurately understands the company’s vision and goals?
+	○ How have you changed the direction or view of a specific function/department to embrace a new way of thinking? Give me an example.
+		○ Tell me about a time when you have been unsatisfied with the status quo.  What did you do to change it?  Were you successful? 
+	 
+	○ Give me an example of missing a major milestone or launch. How did you deal with this and communicate a change? 
+	○ Can you describe a time when you have built enthusiasm and belief so that your staff or colleagues felt able to tackle a difficult target or challenge?
+	○ Tell me about a time when you had to balance the needs of one department / function vs. another. How did you come to a decision?
+	• Wrong decision taken ? 
+	• Bias of action - You see business doing wrong thing what you do ?
+	• Tell me about goals that you set for your department/area. (How will you know if these goals are achieved? 
+	• How do you ensure you are focusing on the right deliverables when you have several competing priorities?  
+	• Tell me about a time when you did not effectively manage your projects and something fell through the cracks.  (Manager)
+
+
+Just found a new dependency for a launch requirement and the team is booked for the next 2 quarters. What do you do?
+	Expected Answers-
+	• What is the priority? Can we launch without it?
+	• Work with team to see if we can move priorities?
+	• Need to figure out options for adding resources?
+	• If no additional resources what could we not do to free up resources? 
+
+
+[example of a time you were significantly blocked on a project, and how you got around it.]
+
+Tell me about a time that you strongly disagreed with your manager on something you deemed to be very important to the business.  What was it about and how did you handle it?
+
+Give me an example of when you took an unpopular stance in a meeting with peers and your leader and you were the outlier.  What was it, why did you feel strongly about it, and what did you do? 
+
+Give me an example of a situation when you had to complete a task or project with fewer resources than you needed. How were you able to complete task/project with so few resources? (What led you to believe that you couldn’t simply ask for more money, time or people? How would things have gone better if you had more resources?)
+
+
+
+
+
+
