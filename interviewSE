@@ -1,0 +1,48 @@
+1. CS fundamentals for comprehension; practical should focus primarily on scripting, secondarily on OO 
+• SE 
+	• basic data structures (trees, linked lists, hashes, stacks, queues) 
+	• hardware fundamentals (CPU cache lines, network stack/protocols, terms and architectures like NIC to ToR connection, voltages, temperature, interface names) 
+	• scripting languages (know one of Perl, Python, PowerShell, VB Script, bash, Golang) 
+	• development languages (C#, Java, ...) 
+	• can query monitoring data, automate alerting for over threshold scenario (with assistance) 
+	• code simple algorithm like string reverse in O(n) or similar rudimentary problem (for SWE I would do something like combinatorial selection from a list with list modification to remove selected items) 
+• SE2 
+	• "When do you decide to automate, what would you automate?" 
+	• "How would you automate Foo?" 
+	• build a monitoring dashboard that queries different data sources and shows all up system health 
+• Senior SE 
+	• design and build a monitoring system with alerting, email notification, etc. 
+• Principal SE 
+	• 
+ 
+2. Scaled & Distributed System design, engineering, deployment, and support w/emphasis on cloud 
+• SE 
+	• interact and speak intelligently with someone who designs servers, understand hardware choices (why certain components, specs. etc.) 
+	• Given the scenario below, your mission is to make the lives of your team mates as easy as possible and also make sure  we keep our customers happy by fulfilling our SLAs 
+	• Scenario: You have a team that supports a legacy client server application and they are on a traditional "bare metal" machines. They are in the process of migrating their application to a microservices architecture while maintaining the current customers  on their old architecture. Typical problems are: 
+	• Old applications are failing seemingly at random and they need to be restarted 
+	• Deploying new updates to old applications requires to re-route service request to only one of two data centers while the offline datacenter is updated 
+	• We want to avoid these same issues on the new architecture 
+• SE2 
+	• cluster design, failover partnering 
+• Senior SE 
+	• design system that interacts with multiple other systems complete with monitoring, fault tolerance, failover, BCDR 
+• Principal SE 
+	• Business plan for global hyper scale, monitor the world, follow the sun support, architect complete system end to end with  
+ 
+3. Networking systems experience 
+• SE 
+	• NIC to ToR connection, interface names, temperatures of integrated circuits 
+• SE2 
+	• Able to resolve common failure scenarios/mitigations at cluster level 
+• Senior SE 
+	• Able to resolve common failure scenarios/mitigations at datacenter level 
+• Principal SE 
+	• Able to  resolve common failure scenarios/mitigations at Azure level 
+ 
+ 
+ 
+Problem Solving: 
+• A particular model of storage device is failing at a rapid rate in one facility, but not in others. Walk me through the steps you would take to root cause the issue. 
+
+
