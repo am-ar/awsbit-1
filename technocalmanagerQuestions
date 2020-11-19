@@ -104,6 +104,69 @@ Give me an example of when you took an unpopular stance in a meeting with peers 
 
 Give me an example of a situation when you had to complete a task or project with fewer resources than you needed. How were you able to complete task/project with so few resources? (What led you to believe that you couldn’t simply ask for more money, time or people? How would things have gone better if you had more resources?)
 
+----------------------------------------------------------------Adding More--------------------------------------------
+
+· Technical foundational skills & understanding – Pick area he worked on and go deep technically in that area and in that area explore his technical understanding – architecture, points of failure, NFRs (scalability, availability, reliability – what it means describe like we do in SLI/SLO/SLA though candidate may not know those terms). Then focus on  production aspects of how monitored, how deployed, regional distribution, capacity mgmt.
+· Production skills as PM– Pick a SRE problem that we worked on such as poor availability of Failover scenario and how candidate would approach to solve for it, what data will candidate need, what questions he/she asks, high level approach (instrumentation, error bucketization, by error plan)
+· Distributed system understanding – design Azure storage 
+· Program Management - on ability to lead end-to-end planning, execution and reporting to realize the success through collaboration, influencing for impact, and communication. Specing ability to define and translate a ‘point of view’ to specification to drive business success. Leverage data, competition and customer feedback to create a ‘point of view’ (What & Why) to drive. 
+		o what is most important as a PM?, how would you do kickoff meeting (What information you would gather, how would you prepare), how do you measure success 
+· Team & culture fit. More focus on production aspects of monitoring, incident response. 
+		o Tell me about a cross-functional team you have been involved in. What was your role?
+		o What is the definition of a good milestone? 
+		o What is failover, load balancing? 
+		
+		
+		
+		
+
+Internal candidates
+
+• S Murty Charmarti  (Ritesh met for informational) - Sr SE Sales & marketing - Good data skills (ADLS, ADB), good tech understanding (monitoring). No PM experience
+• Phanindra - Good PM and tech - take it forward if Phanindra wants to. 
+
+Sample Interview Questions (Jaydeep N)
+	• What is you view on DevOps -  only CI/CD or Operational Eng as well?
+		○ Given an opportunity would you have 2 diff teams or one singular team doing devops and  reliability
+	• What was the last significant work you did as an IC that was a game changer?
+		○ What were the various aspects you considered from Day 0 to Day N
+		○ What were the top 2 challenges u faced and how u overcame those
+		○ How did you ensure that the work that was productized was Reliable
+		○ What indicators, metrics did you consider to put in place to ensure reliability
+		○ What was the business outcome / impact of the implementation?
+	• Do you have experience creating specification for a product or defining features for a product
+		○ What are the main aspects of user story?
+		○ What approach will you take when working with a highly technical team to identify aspects to improve the reliability of the service
+	• What is a MVP as per you?
+		○ What are the crucial aspects that you consider to qualify a deliverable as a MVP? 
+		○ How do you define or arrive at a MVP / What is the process of coming to an agreed upon MVP
+		○ How do you prioritize features to arrive at a MVP
+	• Give a scenario to the candidate (creation of new dashboard, creation of new feature etc) and understand how the candidate will land an idea with business / stakeholders
+		○ Ask probing questions like below
+			▪ Business / stakeholders don’t sponsor buy into the idea. What do you do next?
+			▪ What will you do if you come across an individual in your org who has a similar idea but is in a more influential space because of the proximity to the stakeholders
+			▪ What will you do if you realize the person is ahead in game in terms of features
+	• Give a scenario to the candidate: Eng. manager is mandated to develop features for the product to drive feature parity with competitors, however, the product is unstable.
+		○ How will you have a conversation with the eng. manager on feature parity vs. reliability
+		○ Ask probing questions by making the scenario realisitic
+			▪ Eng. manager’s focus is not reliability but feature dev – then what
+			▪ Eng. manager does not have resources to spare for improving reliability – what do you do
+	• Everything is fine with the product / service that you are assigned to in terms of reliability, service health, performance etc. 
+		○ What will you do in such a scenario
+			▪ How will you utilize your time?
+			▪ How will you engage with the eng. team?
+	• Give a scenario pertaining to difference in opinion between you and your immediate manager. 
+		○ How do you drive the conversation with your manager? 
+	• What are the common reliability related threats to a system
+	• What does Reliability mean to you in the context of a product / service
+	• What does Resiliency mean to you in the context of a product / service
+	• Can you talk about some Reliability-enhancing techniques
+	• Can you talk about some Resiliency-enhancing techniques
+	• What are the various ceremonies in Agile?
+	• How do you do feature feasibility study for your product?
+		○ Add to it other case like for a specific geo? for a SMB vs. EPG customers?
+
+
 
 
 
