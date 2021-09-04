@@ -1,0 +1,237 @@
+%scala
+var clientsceret = dbutils.secrets.get(scope = "smdpkeyvault", key = "PublisherClientSecret")
+spark.conf.set("fs.azure.account.auth.type", "OAuth")
+spark.conf.set("fs.azure.account.oauth.provider.type", "org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider")
+spark.conf.set("fs.azure.account.oauth2.client.id", "3128b16d-8df4-4ca3-8a30-29ee92886264")
+spark.conf.set("fs.azure.account.oauth2.client.secret", clientsceret)
+spark.conf.set("fs.azure.account.oauth2.client.endpoint", "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/token")
+spark.conf.set("fs.azure.createRemoteFileSystemDuringInitialization", "true") 
+
+
+import org.apache.spark.sql.Dataset
+import java.time.LocalDate 
+import scala.collection.mutable.ListBuffer
+import java.time.format.DateTimeFormatter
+import org.apache.hadoop.fs.FileSystem
+import org.apache.hadoop.fs.Path
+
+def pathexist(path:String): Boolean = {
+        var exist = false
+        try{
+          val ls = dbutils.fs.ls(path)
+          exist = true
+        }
+        catch{
+         case e: java.io.FileNotFoundException => exist = false
+      }
+      return exist
+}
+
+val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
+var icount = 3
+//var drpath = "/mnt/smdpgen2dr/gold/certain/,/mnt/smdpgen2dr/gold/ebc/,/mnt/smdpgen2dr/gold/eventcore/,/mnt/smdpgen2dr/gold/eventpoint/,/mnt/smdpgen2dr/gold/hubb/,/mnt/smdpgen2dr/gold/itn/,/mnt/smdpgen2dr/gold/mbp/,/mnt/smdpgen2dr/gold/msx/,/mnt/smdpgen2dr/gold/office365/,/mnt/smdpgen2dr/gold/on24/,/mnt/smdpgen2dr/gold/certain/,/mnt/smdpgen2dr/gold/onemarketo/,/mnt/smdpgen2dr/gold/prm/,/mnt/smdpgen2dr/gold/thirdpartyevents/"
+
+//var drpath = "/mnt/smdpgen2dr/publish/product/insidesales/"
+
+//var drpath = "/mnt/smdpgen2dr/raw/allocadia/,/mnt/smdpgen2dr/raw/allocadia/certain/,/mnt/smdpgen2dr/raw/ebc/,/mnt/smdpgen2dr/raw/eventcore/,/mnt/smdpgen2dr/raw/eventpoint/,/mnt/smdpgen2dr/raw/hubb/,/mnt/smdpgen2dr/raw/itn/,/mnt/smdpgen2dr/raw/mbp/,/mnt/smdpgen2dr/raw/mbppk/,/mnt/smdpgen2dr/raw/msx/,/mnt/smdpgen2dr/raw/on24/,/mnt/smdpgen2dr/raw/onemarketo/,/mnt/smdpgen2dr/raw/prm/,/mnt/smdpgen2dr/raw/prospectdb/,/mnt/smdpgen2dr/raw/qsgt/,/mnt/smdpgen2dr/raw/thirdpartyevents/"
+
+//var drpath = "/mnt/smdpgen2dr/raw/"
+
+var drpath = "/mnt/smdpgen2dr/product/mpaa2/,/mnt/smdpgen2dr/product/account/,/mnt/smdpgen2dr/product/activity/,/mnt/smdpgen2dr/product/annuity/,/mnt/smdpgen2dr/product/annuity/calcfy/,/mnt/smdpgen2dr/product/common/,/mnt/smdpgen2dr/product/consumptionengagement/,/mnt/smdpgen2dr/product/events/,/mnt/smdpgen2dr/product/gdc/intermediate/,/mnt/smdpgen2dr/product/pne/domaintables/,/mnt/smdpgen2dr/product/pne/processing/,/mnt/smdpgen2dr/product/gdc/processing/,/mnt/smdpgen2dr/product/insidesales/intermediate/,/mnt/smdpgen2dr/product/insidesales/processing/,/mnt/smdpgen2dr/product/partner/,/mnt/smdpgen2dr/product/pipeline/,/mnt/smdpgen2dr/product/prospectdb/,/mnt/smdpgen2dr/product/socialselling/,/mnt/smdpgen2dr/product/support/,/mnt/smdpgen2dr/raw/,/mnt/smdpgen2dr/raw/allocadia/,/mnt/smdpgen2dr/raw/allocadia/certain/,/mnt/smdpgen2dr/raw/ebc/,/mnt/smdpgen2dr/raw/eventcore/,/mnt/smdpgen2dr/raw/eventpoint/,/mnt/smdpgen2dr/raw/hubb/,/mnt/smdpgen2dr/raw/itn/,/mnt/smdpgen2dr/raw/mbp/,/mnt/smdpgen2dr/raw/mbppk/,/mnt/smdpgen2dr/raw/msx/,/mnt/smdpgen2dr/raw/on24/,/mnt/smdpgen2dr/raw/onemarketo/,/mnt/smdpgen2dr/raw/prm/,/mnt/smdpgen2dr/raw/prospectdb/,/mnt/smdpgen2dr/raw/qsgt/,/mnt/smdpgen2dr/raw/thirdpartyevents/,/mnt/smdpgen2dr/publish/product/insidesales/,/mnt/smdpgen2dr/gold/certain/,/mnt/smdpgen2dr/gold/ebc/,/mnt/smdpgen2dr/gold/eventcore/,/mnt/smdpgen2dr/gold/eventpoint/,/mnt/smdpgen2dr/gold/hubb/,/mnt/smdpgen2dr/gold/itn/,/mnt/smdpgen2dr/gold/mbp/,/mnt/smdpgen2dr/gold/msx/,/mnt/smdpgen2dr/gold/office365/,/mnt/smdpgen2dr/gold/on24/,/mnt/smdpgen2dr/gold/certain/,/mnt/smdpgen2dr/gold/onemarketo/,/mnt/smdpgen2dr/gold/prm/,/mnt/smdpgen2dr/gold/thirdpartyevents/"
+
+//,
+//var drpath = "/mnt/smdpgen2dr/product/pne/domaintables/,/mnt/smdpgen2dr/product/pne/processing/"
+
+
+
+var allfolders = drpath.split(",")
+for( drPath <- allfolders )
+{
+      var IsCurrent = false
+      IsCurrent = pathexist(drPath.toLowerCase())
+      if(IsCurrent)
+      {
+          val ls = dbutils.fs.ls(drPath)
+          for( adlsgenfile <- ls )
+          {
+                var fileloc = adlsgenfile.path
+                val ls = dbutils.fs.ls(fileloc)
+                val lscount = dbutils.fs.ls(fileloc).toDF()
+                if(lscount.count() > icount)
+                {
+                    var l = new ListBuffer[String]()
+                    for( oneFile <- ls)
+                    {
+                        var strFile = oneFile.path
+                        var strgetdates = strFile.split(fileloc)
+                        var strdate = strgetdates(1).replace("/","")
+                        l += strdate
+                    }
+                    //println(l.sorted.reverse)
+                    println(l.sorted)
+                    println(l(0))
+                    println(l.length)
+                    val iint = l.length - icount
+                    for( aa <- 0 to iint - 1)
+                     {
+                          var strdeletefolder = fileloc + l(aa)
+                          val fs   = FileSystem.get(spark.sparkContext.hadoopConfiguration)
+                          var dirPath = new org.apache.hadoop.fs.Path(strdeletefolder)
+                          println(fs.isDirectory(dirPath))
+                          if(fs.isDirectory(dirPath))
+                          {
+                            println( "deleting : " + strdeletefolder);
+                            dbutils.fs.rm(strdeletefolder, true)
+                            println( "Deleted folder : " + strdeletefolder);
+                            }
+                          
+                      }
+                }
+           }
+      }
+      else
+      {
+        println("The path not found : " + drPath)
+      }
+}
+
+
+
+---------------------------
+
+%scala
+import org.apache.spark.sql.Dataset
+
+def pathexist(path:String): Boolean = {
+        var exist = false
+        try{
+          val ls = dbutils.fs.ls(path)
+          exist = true
+        }
+        catch{
+         case e: java.io.FileNotFoundException => exist = false
+      }
+      return exist
+}
+
+var files = dbutils.fs.ls("/mnt/idpf/L4Publish/Pipeline/Dim/Confidential/DimLead/")
+
+val filemount = "/mnt/idpf/L4Publish/"
+///mnt/smdp/publish/product/pipeline/dimlead/full/
+val adbmount = "/mnt/smdp/"
+var searchforfileName = "_History_"
+for( adlsgenfile <- files )
+{
+ //println("The File Name is : " + adlsgenfile);
+ val parquetfolderName = if (adlsgenfile.path.contains(searchforfileName)) adlsgenfile.path.split("/").last.split("_").last.split("""\.""")(0) else null
+if(parquetfolderName != null)
+{
+  //Here we are getting the File Data and time from tsv & appending to the PArquet folder.
+  //println(parquetfolderName);
+  var adboutputfile = adbmount + "Publish/product/Pipeline/DimLead/history/" + parquetfolderName
+  adboutputfile = adboutputfile.toLowerCase()
+  var IsCurrent = false
+  IsCurrent = pathexist(adboutputfile)
+ if(IsCurrent)
+  {
+     println("File already exists at : " + adboutputfile)
+  }
+  else
+  {
+    println("The parquet final file is : " + adboutputfile);
+  val reportingpricinglevel = spark.read.format("com.databricks.spark.csv")
+    .option("delimiter", "\t")
+    .option("header", true)
+    .option("inferSchema",true)
+    .option("nullValue","#NULL#")
+    .option("treatEmptyValuesAsNulls", "true")
+   .option("escapeQuotes",false )
+    .option("quote","")
+    .load(adlsgenfile.path); 
+
+//display(reportingpricinglevel);
+//Save it to parquet file
+reportingpricinglevel.write.format("parquet").save(adboutputfile)
+    println("Parquet File Sucessfully Created at : " + adboutputfile)
+  }
+  
+  
+  
+
+
+}
+}
+
+-------------------------------------
+
+%scala
+import org.apache.spark.sql.Dataset
+
+def pathexist(path:String): Boolean = {
+        var exist = false
+        try{
+          val ls = dbutils.fs.ls(path)
+          exist = true
+        }
+        catch{
+         case e: java.io.FileNotFoundException => exist = false
+      }
+      return exist
+}
+
+val rec = true 
+val searchforfileName = "Snapshot"
+val filemount = "/mnt/idpf/L4Publish/"
+//filemountoutput = "/mnt/smdp/"
+val fileoutputfolder = "/mnt/smdp/publish/product/pipeline/factopportunitylineitems/snapshot/"
+
+var files = dbutils.fs.ls(fileoutputfolder)
+
+for( adlsgenfile <- files )
+{
+  
+   var aa = adlsgenfile.path
+  var searchforfileName = "daily"
+ 
+  val fcheck = 0
+  if (aa.contains("-"))
+  {
+    aa = aa.replace("dbfs:","")
+    aa = aa.dropRight(1)
+    println("The Source is : " + aa);
+    
+   val outputfolder = aa.replace("snapshot/","snapshot/daily/")
+    val foutputfolder = outputfolder + "/"
+    println("The output Source is : " + foutputfolder);
+    var IsCurrent = false
+    IsCurrent = pathexist(foutputfolder.toLowerCase())
+       if(IsCurrent)
+        {
+          
+          println("File exists")
+          //dbutils.fs.mv(aa,foutputfolder,true)
+          //println("Copy started.....")
+          //Thread.sleep(1000000)
+        }
+    else
+    {
+      //Thread.sleep(1000000)
+      println("Copy started.....")
+      //Thread.sleep(100000)
+      dbutils.fs.mv(aa,foutputfolder,true)
+      println("Done")
+    }
+    }
+    
+    //var sourcefolder = aa + 
+    //dbutils.fs.cp(sourcefolder,destinationfolder,true)
+  
+  else
+  {
+    println("its other folder folder")
+    
+    
+  }
+  }
+  
+ // var allfilesdates = dbutils.fs.ls(aa)
