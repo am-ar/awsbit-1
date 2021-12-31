@@ -59,3 +59,18 @@ EOF
    42  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
    43  kubectl get nodes
    44  clear
+To change the Label : 
+       Ex : 
+       kubectl label node ip-172-17-100-228 node-role.kubernetes.io/worker=worker
+       where ip-172-17-100-228 is hostname of workerNode.
+
+   45  kubectl create deployment DemoApplication --replicas=15 --image=nginx
+
+this command should create multiple replicas in all 2 worker nodes.
+ To check.
+
+   46  watch kubectl get pods -o wide
+   47  kubectl get pods -o wide
+
+
+
