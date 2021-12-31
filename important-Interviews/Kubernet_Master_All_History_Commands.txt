@@ -1,0 +1,61 @@
+Master All History Commands : 
+ref : https://www.fosstechnix.com/how-to-install-kubernetes-cluster-on-ubuntu/
+
+You Tube : https://www.youtube.com/watch?v=RgnT6n4l-Xo&ab_channel=DevOpsHint
+
+1  clear
+    2  sudo apt-get update
+    3  clear
+    4  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    5  $(dpkg --print-architecture)
+    6  clear
+    7  echo "deb [arch=am64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    8  clear
+    9  sudo apt-get update -y
+   10  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   11  sudo apt-get update -y
+   12  clear
+   13  sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+   14  pwd
+   15  cd /etc/docker
+   16  cd /home/ubuntu
+   17  clear
+   18  cat <<EOF | sudo tee /etc/docker/daemon.json
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+   19  clear
+   20  sudo systemctl enable docker
+   21  sudo systemctl daemon-reload
+   22  sudo systemctl restart docker
+   23  sudo apt-get update
+   24  clear
+   25  sudo apt-get install -y apt-transport-https ca-certificates curl
+   26  sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+   27  clear
+   28  echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+   29  sudo apt-get update
+   30  sudo apt-get install -y kubelet kubeadm kubectl
+   31  sudo apt-mark hold kubelet kubeadm kubectl
+   32  clear
+   33  sudo kubeadm init --pod-network-cidr 10.0.0.0/16
+   34  kubeadm version
+   35  kubectl get nodes
+   36  mkdir -p $HOME/.kube
+   37  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   38  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   39  clear
+   40  kubeadm version
+   41  kubectl get nodes
+   42  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+   43  kubectl get nodes
+   44  clear

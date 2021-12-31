@@ -1,0 +1,47 @@
+Unbuntu 20 version Worker Node All History Commands:
+ref : https://www.fosstechnix.com/how-to-install-kubernetes-cluster-on-ubuntu/
+
+You Tube : https://www.youtube.com/watch?v=RgnT6n4l-Xo&ab_channel=DevOpsHint
+
+1  clear
+    2  sudo apt-get update -y
+    3  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    4  clear
+    5  echo   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    6  sudo apt-get update -y
+    7  sudo apt-get install docker-ce docker-ce-cli containerd.io
+    8  clear
+    9  cat <<EOF | sudo tee /etc/docker/daemon.json
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+   10  sudo systemctl enable docker
+   11  sudo systemctl daemon-reload
+   12  sudo systemctl restart docker
+   13  sudo apt-get update
+   14  clear
+   15  sudo apt-get install -y apt-transport-https ca-certificates curl
+   16  clear
+   17  sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+   18  echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+   19  sudo apt-get update
+   20  sudo apt-get install -y kubelet kubeadm kubectl
+   21  sudo apt-mark hold kubelet kubeadm kubectl
+   22  clear
+   23  history
+   24  cls
+   25  clear
+   26  sudo kubeadm join 172.17.100.164:6443 --token a9ckju.by1zcitw8b6w60pe --discovery-token-ca-cert-hash sha256:1ba0e1cfe12e4db7e75ac56e7408cfb2beb04534e6cf5ef54d7b91e97799aaad
+   27  hostname
+   28  clear
+   29  history
+   30  clear
+   31  history
