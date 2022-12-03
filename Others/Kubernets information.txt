@@ -1,0 +1,138 @@
+Latest Version of K8 1.25
+
+Max Nodes inclusding Master nodes are 5000
+Mac 1.5L pods in total cluster
+max 110 pods per Worker Node.
+Max 3L container per K8 cluster.
+
+Components of Kubernet Master Node:
+
+API Server
+
+Kube Scheduler
+
+Kube controller manager
+
+-->Node COntroller 
+--> replication controller
+--> end points controller
+--> service accounts & token controller
+
+
+
+ETCD(Key value DB)
+
+Components of Kubernet worker Node:
+
+Container runtime
+
+kubelet
+
+kubeproxy
+
+Components :
+
+COntainer
+POD
+Replica controllor
+Replica Set
+Daemon Sets
+Node selector
+Services
+deployments
+Namespaces
+stateful
+volumes
+horizontal auto scaling object..
+Ingress Controllers
+Helm
+
+--------------
+
+
+
+how to connect to K8?
+CLI:
+what is kubectl : this the client to interact to K8
+
+With GUI : Kubenets dashboard
+
+why some companies will go for odd number master Server?
+Ans : Election.
+
+
+In K8, when you create a POD, a ip address is assigned...So, if you create 2 containers in one POD, then one one ip address is assigned...to connect to a contoner, we use port numbers..
+
+what is POD virtual network?
+
+how 2 containers can talk to ech other in single POD?
+Ans : Localhost
+
+
+Replication controllor is to maintain the correct number of pods needed...
+***these are assiciated with selectors & Labels
+
+importance of Labels
+
+types of selectors :
+
+1. Equal to(replication controllors)
+	It support 3 types of operators -->   =, == and !=
+2. set based (replica sets) --> in & notin
+
+
+If you want to make sure, 1 POD has to create in one WorkerNode, then we use Daemon sets.
+
+with Daemon sets, the min POD & Max POD created per Worker Node is 1.
+
+No concept of Scale Dowm & Scale up....
+
+If you add more worker nodes, then each worker node POD is created automatically...So, you 
+want to select this POD creation only on the required Worker Nodes, then we will use 
+Node Selector.....For selection, we can use the labelling...
+
+deployment object will automatically create a replica set when you use deployment..
+
+Deployment types :
+
+1. rolling upgrade or ramped upgrades or incremental upgrade.(99%)
+2. recreate(0%)
+3. Canary upgrade(1%)
+
+Volumes:
+If you kill a container, by default the data in it is deleted. if you want to persist 
+data like stateful applications, then data should stored & we need volumes...
+
+Types : 
+1.temp volumes(ephermial volumes)
+2.Host Path volume
+
+by default, when pod is created, ephermial is created & vise virsa...
+
+Horizontal Auto scaling object can work for Replica set/ replica controller & deployments..
+
+Grouping of simular PODS are called as Services...
+
+3 types of Services :
+
+nodeport
+cluster ip(by Default)
+load balancer 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
